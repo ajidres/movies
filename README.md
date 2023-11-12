@@ -2,9 +2,12 @@
 
 This is an Android Application to see a list of movies by popularity by rated, see a list of actors sorted by popularity, track location and show on map also take photo or take from gallery and upload to firestore.
 
-<img src='./demo/people.png' width=30%> <img src='./demo/m_popular.png' width=30%>
-<img src='./demo/m_rated.png' width=30%> <img src='./demo/m_upcoming.png' width=30%>
-<img src='./demo/map.png' width=30%> <img src='./demo/photo.png' width=30%>
+<img src='./demo/people.png' width=30%> 
+<img src='./demo/m_popular.png' width=30%>
+<img src='./demo/m_rated.png' width=30%> 
+<img src='./demo/m_upcoming.png' width=30%>
+<img src='./demo/map.png' width=30%> 
+<img src='./demo/photo.png' width=30%>
 
 ## Installation
 Clone this repository and import into **Android Studio**
