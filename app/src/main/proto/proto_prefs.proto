@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+option java_package = "com.ajidres.movies";
+option java_multiple_files = true;
+
+message PopularPeopleList{
+  int32 id=1;
+  string knownFor=2;
+  string name=3;
+  string profilePath=4;
+  int32 rate=5;
+}
+
+message PopularPeople {
+  int32 page=1;
+  repeated PopularPeopleList peopleList = 2;
+  int32 totalPages=3;
+}
+
+
+message MoviesList{
+  int32 id=1;
+  string originalTitle=2;
+  int32 popularity=3;
+  string posterPath=4;
+  string releaseDate=5;
+  int32 rated=6;
+}
+
+message PopularMovies {
+  int32 page=1;
+  repeated MoviesList moviesList = 2;
+  int32 totalPages=3;
+}
+
+message RatedMovies {
+  int32 page=1;
+  repeated MoviesList moviesList = 2;
+  int32 totalPages=3;
+}
+
+message UpcomingMovies {
+  int32 page=1;
+  repeated MoviesList moviesList = 2;
+  int32 totalPages=3;
+}

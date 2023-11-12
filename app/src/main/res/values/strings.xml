@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Movies</string>
+    <string name="take_photo">Take photo</string>
+    <string name="menu_people">People</string>
+    <string name="menu_movies">Movies</string>
+    <string name="menu_locations">Locations</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="image_loaded">Image loaded</string>
+    <string name="image_load_fail">Image load fail</string>
+</resources>
