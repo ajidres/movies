@@ -1,46 +1,36 @@
 package com.ajidres.movies.features.people
 
+
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ajidres.movies.databinding.ViewItemPopularPeopleBinding
 import com.ajidres.movies.domain.model.ResultUI
 import com.bumptech.glide.Glide
 
+class PeopleListAdapter : ListAdapter<ResultUI, PeopleListViewHolder>(ResultDiffUtil()) {
 
-class PeopleAdapter() : RecyclerView.Adapter<PeopleViewHolder>() {
-
-
-    private var items = mutableListOf<ResultUI>()
     private lateinit var context: Context
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeopleViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PeopleListViewHolder {
         context = parent.context
 
         val mView: ViewItemPopularPeopleBinding = ViewItemPopularPeopleBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        return PeopleViewHolder(mView)
+        return PeopleListViewHolder(mView)
     }
 
-    override fun getItemCount(): Int = items.size
-
-    override fun onBindViewHolder(holder: PeopleViewHolder, position: Int) {
-        holder.bind(context, items[position])
-    }
-
-    fun update(data: List<ResultUI>) {
-        this.items.apply {
-            clear()
-            addAll(data)
-            notifyDataSetChanged()
-        }
+    override fun onBindViewHolder(holder: PeopleListViewHolder, position: Int) {
+        holder.bind(context, getItem(position))
     }
 
 }
 
-class PeopleViewHolder(itemView: ViewItemPopularPeopleBinding) : RecyclerView.ViewHolder(itemView.root) {
+class PeopleListViewHolder(itemView: ViewItemPopularPeopleBinding) : RecyclerView.ViewHolder(itemView.root) {
+
     var mView: ViewItemPopularPeopleBinding = itemView
 
     fun bind(context: Context, items: ResultUI) {
@@ -51,4 +41,12 @@ class PeopleViewHolder(itemView: ViewItemPopularPeopleBinding) : RecyclerView.Vi
             tvPeopleAverage.text=items.rate.toString()
         }
     }
+
+}
+
+
+class ResultDiffUtil:DiffUtil.ItemCallback<ResultUI>(){
+    override fun areItemsTheSame(oldItem: ResultUI, newItem: ResultUI): Boolean = oldItem==newItem
+
+    override fun areContentsTheSame(oldItem: ResultUI, newItem: ResultUI): Boolean = oldItem==newItem
 }

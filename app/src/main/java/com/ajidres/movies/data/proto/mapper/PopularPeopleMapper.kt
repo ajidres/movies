@@ -29,6 +29,7 @@ fun List<ResultUI>.toPopularPeopleList():List<PopularPeopleList>{
                 .setKnownFor(it.toMoviesList())
                 .setName(it.name)
                 .setProfilePath(it.profilePath)
+                .setRate(it.rate)
                 .build()
         }.toList()
     }

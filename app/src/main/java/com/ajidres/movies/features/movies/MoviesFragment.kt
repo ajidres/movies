@@ -5,7 +5,6 @@ import android.view.View
 import android.widget.TableLayout
 import com.ajidres.movies.base.BaseFragment
 import com.ajidres.movies.databinding.FragmentMoviesBinding
-import com.ajidres.movies.features.people.PeopleAdapter
 import com.google.android.material.tabs.TabLayoutMediator
 
 class MoviesFragment : BaseFragment<FragmentMoviesBinding>() {

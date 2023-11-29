@@ -17,6 +17,11 @@ data class ResultUI(
     fun toMoviesList()
     : String {
         val lastComma=knownFor.lastIndexOf(',')
-        return knownFor.replaceRange(lastComma, lastComma+1, " and")
+        if(lastComma<0){
+            return knownFor
+        }else{
+            return  knownFor.replaceRange(lastComma, lastComma+1, " and")
+        }
+
     }
 }

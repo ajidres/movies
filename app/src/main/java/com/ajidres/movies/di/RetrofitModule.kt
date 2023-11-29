@@ -24,11 +24,11 @@ object RetrofitModule {
 
         val interceptor = HttpLoggingInterceptor()
 
-        if (DEBUG) {
-            interceptor.level = HttpLoggingInterceptor.Level.BODY
-        } else {
+//        if (DEBUG) {
+//            interceptor.level = HttpLoggingInterceptor.Level.BODY
+//        } else {
             interceptor.level = HttpLoggingInterceptor.Level.NONE
-        }
+//        }
 
 
         val httpClient: OkHttpClient = OkHttpClient.Builder()

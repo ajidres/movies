@@ -1,6 +1,7 @@
 package com.ajidres.movies.features.people
 
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -9,13 +10,14 @@ import com.ajidres.movies.base.BaseFragment
 import com.ajidres.movies.data.api.model.ResultEndpoints
 import com.ajidres.movies.databinding.FragmentPeopleBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class PeopleFragment : BaseFragment<FragmentPeopleBinding>() {
 
     private val viewModel: PeopleViewModel by viewModels()
 
-    private val peopleAdapter by lazy { PeopleAdapter() }
+    private val peopleAdapter by lazy { PeopleListAdapter() }
 
     override fun initBinding(): FragmentPeopleBinding = FragmentPeopleBinding.inflate(layoutInflater)
 
@@ -24,9 +26,12 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>() {
 
         setupPeopleRecycler()
 
-        peopleDataObserverApi()
         peopleDataObserverDb()
         viewModel.getPeopleDb()
+        peopleDataObserverApi()
+        viewModel.fetchPeople()
+
+
     }
 
     private fun setupPeopleRecycler() {
@@ -45,7 +50,6 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>() {
 
                 is ResultEndpoints.Success -> {
                     viewModel.savePeople(people.data)
-                    peopleAdapter.update(people.data.results)
                 }
 
                 is ResultEndpoints.Failure -> {
@@ -58,8 +62,7 @@ class PeopleFragment : BaseFragment<FragmentPeopleBinding>() {
 
     private fun peopleDataObserverDb() {
         viewModel.peopleDataDb.observe(this) { result ->
-            viewModel.fetchPeople()
-            peopleAdapter.update(result.results)
+            peopleAdapter.submitList(result.results)
         }
     }
 

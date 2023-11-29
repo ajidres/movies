@@ -8,7 +8,9 @@ import com.ajidres.movies.data.api.model.ResultEndpoints
 import com.ajidres.movies.domain.model.PeopleResponseUI
 import com.ajidres.movies.domain.useCases.people.PeopleUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @HiltViewModel
@@ -21,10 +23,15 @@ class PeopleViewModel @Inject constructor(private val peopleUseCase: PeopleUseCa
     val peopleDataDb: LiveData<PeopleResponseUI> get() = _peopleDataDb
 
     fun fetchPeople() {
+        var pageRandom = (1..10).random()
         viewModelScope.launch {
-            peopleUseCase.invokeFetchPeople(1).collect {
-                _peopleDataApi.value = it
-            }
+//            repeat(TimeUnit.SECONDS.toMillis(5).toInt()){
+                peopleUseCase.invokeFetchPeople(pageRandom).collect {
+                    _peopleDataApi.value = it
+                }
+//                pageRandom = (1..10).random()
+//                delay(TimeUnit.SECONDS.toMillis(5))
+//            }
         }
     }
 
